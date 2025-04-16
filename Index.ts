@@ -27,10 +27,10 @@ const productSchema: Schema = new Schema<Product>({
     createdAt:{ type: Date, default: Date.now}
 })
 
+
 productSchema.set("strict", true)
 
-const Product = mongoose.model("product", productSchema)
-
+const ProductModel = model<Product>("product", productSchema)
 
 
 
@@ -38,21 +38,62 @@ const Product = mongoose.model("product", productSchema)
 //Functions: 
 
 
-const getProducts = async () => {
+const createProduct = async (data: Product) => {
     try {
-        const products = await Product.find()
-        console.log("All products: ", Product)
+        const newProduct = new ProductModel(data)
+        await newProduct.save()
+        console.log("Producto creado:", newProduct)
+        return "Producto creado correctamente "
     } catch (error) {
-        console.log("Error getting products...", error)
+        console.error("Error al crear producto:", error)
+        return "Error al crear el producto "
     }
 }
 
-const getProductsById = async (id: any) => {
+
+
+const getProducts = async () => {
     try {
-        const product = await Product.findById(id)
-        console.log("Product found:", product)
+        const products = await ProductModel.find()
+        console.log("Todos los productos: ", products)
+        return "Productos encontrados correctamente"
     } catch (error) {
-        console.log("Error getting product...", error)
+        console.error("Error al obtener los productos:", error)
+        return "Error al obtener los productos "
+    }
+}
+
+const getProductsById = async (id: string) => {
+    try {
+        const product = await ProductModel.findById(id)
+        console.log("Producto encontrado:", product)
+        return "Producto encontrado correctamente"
+    } catch (error) {
+        console.error("Error al obtener producto:", error)
+        return "Error al obtener producto"
+    }
+}
+
+
+const updateProduct = async (id: string, newData:Partial<Product>) => {
+    try {
+        const updatedProduct = await ProductModel.findByIdAndUpdate(id, newData, {new:true})
+        console.log("Producto actualizado", updatedProduct)
+        return "Producto actualizado correctamente"
+    } catch (error) {
+        console.error("Error al actualizar producto", error)
+        return "Error al actualizar producto"
+    }
+}
+
+const deletProduct = async (id: string) => {
+    try {
+        await ProductModel.findByIdAndDelete(id)
+        console.log("Producto eliminado", id)
+        return "Producto eliminado correctamente"
+    } catch (error) {
+        console.error("Error al borrar producto", error)
+        return "Error al borrar producto"
     }
 }
 

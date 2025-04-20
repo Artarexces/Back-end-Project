@@ -5,7 +5,7 @@ connectDB()
 
 //Interface 
 
-interface Product extends Document{
+interface ProductInterface extends Document{
     prod: string
     type: string 
     size: number
@@ -15,9 +15,19 @@ interface Product extends Document{
     createdAt: Date
 }
 
+
+interface ProductInput {
+    prod: string
+    type: string 
+    size: number
+    zone?: string
+    price: number
+    available: boolean
+}
+
 //Schema del producto.
 
-const productSchema: Schema = new Schema<Product>({
+const productSchema: Schema = new Schema<ProductInterface>({
     prod:{ type: String, required: true },
     type:{ type: String, required: true },
     size:{ type: Number, required: true },
@@ -30,7 +40,7 @@ const productSchema: Schema = new Schema<Product>({
 
 productSchema.set("strict", true)
 
-const ProductModel = model<Product>("product", productSchema)
+const ProductModel = model<ProductInput>("product", productSchema)
 
 
 
@@ -38,7 +48,7 @@ const ProductModel = model<Product>("product", productSchema)
 //Functions: 
 
 
-const createProduct = async (data: Product) => {
+const createProduct = async (data: ProductInput) => {
     try {
         const newProduct = new ProductModel(data)
         await newProduct.save()
@@ -49,7 +59,6 @@ const createProduct = async (data: Product) => {
         return "Error al crear el producto "
     }
 }
-
 
 
 const getProducts = async () => {
@@ -63,10 +72,11 @@ const getProducts = async () => {
     }
 }
 
+
 const getProductsById = async (id: string) => {
     try {
         const product = await ProductModel.findById(id)
-        console.log("Producto encontrado:", product)
+        console.log("Producto encontrado por id:", product)
         return "Producto encontrado correctamente"
     } catch (error) {
         console.error("Error al obtener producto:", error)
@@ -75,7 +85,7 @@ const getProductsById = async (id: string) => {
 }
 
 
-const updateProduct = async (id: string, newData:Partial<Product>) => {
+const updateProduct = async (id: string, newData:Partial<ProductInput>) => {
     try {
         const updatedProduct = await ProductModel.findByIdAndUpdate(id, newData, {new:true})
         console.log("Producto actualizado", updatedProduct)
@@ -85,6 +95,7 @@ const updateProduct = async (id: string, newData:Partial<Product>) => {
         return "Error al actualizar producto"
     }
 }
+
 
 const deletProduct = async (id: string) => {
     try {
@@ -98,3 +109,35 @@ const deletProduct = async (id: string) => {
 }
 
 
+
+
+
+const runExample = async () => { 
+
+// const cProduct = await createProduct({
+//     prod:"teclado plano",
+//     type:"electronico",
+//     size:18,
+//     zone:"villa grande",
+//     price: 11000,
+//     available: true
+//      }); 
+
+const gProducts = await getProducts()
+
+const gProcductsId = await getProductsById('6804510931e6b8d5a68ac584')
+
+const uProduct = await updateProduct('680450ecff3a9d345bf4351a', {zone: "adrogue"})
+
+const dProduct = await deletProduct('680450aaa1f4175182591c94')
+console.log(dProduct)
+
+
+
+}
+
+
+
+
+
+runExample()

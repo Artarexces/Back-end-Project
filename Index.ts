@@ -1,36 +1,33 @@
 import { connectDB } from "./config/mongoose"
 import { createProduct, getProducts, getProductsById, updateProduct, deletProduct } from "./Controllers/productsControllers"
 
-
-
+//Connexion a la base de datos...
 connectDB()
 
 const runExample = async () => { 
 
-// const cProduct = await createProduct({
-//     prod:"teclado plano",
-//     type:"electronico",
-//     size:18,
-//     zone:"villa grande",
-//     price: 11000,
-//     available: true
-//      }); 
+const cProduct = await createProduct({       // Crear productos
+    prod:"",
+    type:"",
+    size:0,
+    zone:"",
+    price:0,
 
-const gProducts = await getProducts()
+     }); 
+console.log(cProduct)
 
-const gProcductsId = await getProductsById('6804510931e6b8d5a68ac584') 
+const gProducts = await getProducts()       //Obtener productos
+console.log(gProducts)
 
-// const uProduct = await updateProduct('680450ecff3a9d345bf4351a', {zone: "adrogue"})
+const gProcductsId = await getProductsById('')       //Obtener producto por su id
+console.log(gProcductsId)
 
-// const dProduct = await deletProduct('680450aaa1f4175182591c94')
-// console.log(dProduct)
+const uProduct = await updateProduct('', {})     //Actualizar producto
+console.log(uProduct)
 
-
+const dProduct = await deletProduct('')      //Eliminar producto por su id
+console.log(dProduct)
 
 }
-
-
-// Prueba de funciones
-
 
 runExample()

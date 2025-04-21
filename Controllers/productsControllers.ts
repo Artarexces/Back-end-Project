@@ -1,5 +1,7 @@
 import { ProductInput ,ProductModel } from "../models/Product"
 
+//Funcion para crear producto
+
 const createProduct = async (data: ProductInput) => {
     try {
         const newProduct = new ProductModel(data)
@@ -12,6 +14,7 @@ const createProduct = async (data: ProductInput) => {
     }
 }
 
+//Funcion para obtener todos los productos
 
 const getProducts = async () => {
     try {
@@ -24,6 +27,7 @@ const getProducts = async () => {
     }
 }
 
+//Funcion para obtener productos por su ID
 
 const getProductsById = async (id: string) => {
     try {
@@ -36,6 +40,7 @@ const getProductsById = async (id: string) => {
     }
 }
 
+//Funcion para actualizar productos
 
 const updateProduct = async (id: string, newData:Partial<ProductInput>) => {
     try {
@@ -48,6 +53,7 @@ const updateProduct = async (id: string, newData:Partial<ProductInput>) => {
     }
 }
 
+//Funcion para eliminar productos
 
 const deletProduct = async (id: string) => {
     try {

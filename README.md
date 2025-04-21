@@ -54,7 +54,7 @@ Aplicación Back-End desarrollada con **TypeScript** y **MongoDB** utilizando **
 
 El archivo `package.json` contiene los siguientes scripts para facilitar la ejecución del proyecto desde la terminal:
 
-json 
+`json 
 
 **scripts**
   

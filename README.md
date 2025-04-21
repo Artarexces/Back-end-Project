@@ -54,11 +54,15 @@ Aplicación Back-End desarrollada con **TypeScript** y **MongoDB** utilizando **
 
 El archivo `package.json` contiene los siguientes scripts para facilitar la ejecución del proyecto desde la terminal:
 
----json:
+json 
+
 **scripts**
-  start: tsc && node ./src/index.js,
-  dev: ts-node-dev --respawn index.ts,
-  build: tsc,
+  
+ - **start**: tsc && node ./src/index.js,
+  
+ - **dev**: ts-node-dev --respawn index.ts,
+  
+ - **build**: tsc
 
 
 - **npm run start** → Compila el proyecto y ejecuta el archivo `index.js` desde la carpeta `src`.

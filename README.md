@@ -58,7 +58,7 @@ json
 
 **scripts**
   
-  **start**: tsc && node ./src/index.js
+  **start**: tsc && node ./dist/index.js
   
   **dev**: ts-node-dev --respawn index.ts
   

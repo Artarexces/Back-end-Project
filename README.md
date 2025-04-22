@@ -54,15 +54,15 @@ Aplicación Back-End desarrollada con **TypeScript** y **MongoDB** utilizando **
 
 El archivo `package.json` contiene los siguientes scripts para facilitar la ejecución del proyecto desde la terminal:
 
-`json 
+json 
 
 **scripts**
   
- - **start**: tsc && node ./src/index.js,
+  **start**: tsc && node ./src/index.js
   
- - **dev**: ts-node-dev --respawn index.ts,
+  **dev**: ts-node-dev --respawn index.ts
   
- - **build**: tsc
+  **build**: tsc
 
 
 - **npm run start** → Compila el proyecto y ejecuta el archivo `index.js` desde la carpeta `src`.
@@ -118,3 +118,7 @@ El archivo `package.json` contiene los siguientes scripts para facilitar la ejec
 
 - Este proyecto es un entorno de pruebas para aprender sobre la conexión a **MongoDB** y operaciones CRUD usando **Mongoose** en **TypeScript**.
 - Las respuestas de las funciones son mensajes por consola para fines de desarrollo.
+
+## Notas para los profes 
+
+-La verdad que aprendi muchisimo en este proyecto, quise apuntar a mas agregandole un cli, pero preferi pulir lo que ya tenia desarollado, desde ya muchas gracias por su tiempo! 

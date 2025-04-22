@@ -16,6 +16,8 @@ interface ProductInterface extends Document{
 
 //Interface que para el CRUD (sin _id y createdAt)  
 
+//Nota: Tuve que crear 2 interfaces para que typescript no me de error al intentar crear productos.
+
 interface ProductInput {
     prod: string
     type: string 
